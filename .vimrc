@@ -52,10 +52,14 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'chiel92/vim-autoformat'
-Plug 'tomasr/molokai'
 Plug 'roxma/vim-paste-easy'
 Plug 'scrooloose/nerdcommenter'
+" Colavorative vim in real time (does not work because python)
 Plug 'FredKSchott/CoVim'
+"
+" HTML and CSS helper
+Plug 'mattn/emmet-vim'
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'} "To live changes when html, css and javascript
 
 call plug#end()
 " Plugins installed with plug *************************
@@ -85,4 +89,7 @@ noremap <F3> :Autoformat<CR>
 au BufWrite * :Autoformat
 let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 
+" Emmet shortcuts
+let g:user_emmet_mode='n'
+let g:user_emmet_leader_key=','
 

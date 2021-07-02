@@ -1,10 +1,11 @@
-" Tabs keys
-nmap T :tabnew
-nmap <S-l> :tabnext<CR>
-nmap <S-h> :tabprevious<CR>
-nmap <S-q> :tabclose<CR>
-
 let mapleader=" "
+
+" Tabs keys
+nmap <Leader>t :tabnew
+nmap <Leader>l :tabnext<CR>
+nmap <Leader>h :tabprevious<CR>
+"nmap <Leader>q :tabclose<CR>
+
 nmap <Leader>s <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
@@ -26,4 +27,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-
+"Escape easily
+imap <silent> jj <esc>
+vmap <silent> ee <esc>
+nmap <silent> ee <esc>
