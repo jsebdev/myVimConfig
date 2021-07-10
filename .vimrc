@@ -59,7 +59,9 @@ Plug 'FredKSchott/CoVim'
 "
 " HTML and CSS helper
 Plug 'mattn/emmet-vim'
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'} "To live changes when html, css and javascript
+" To live changes when html, css and javascript -- Not working with css
+" variables
+" Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call plug#end()
 " Plugins installed with plug *************************
@@ -92,4 +94,3 @@ let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 " Emmet shortcuts
 let g:user_emmet_mode='n'
 let g:user_emmet_leader_key=','
-

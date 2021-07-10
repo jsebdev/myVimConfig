@@ -9,7 +9,10 @@ nmap <Leader>h :tabprevious<CR>
 nmap <Leader>s <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
+nmap <Leader>W :wa<CR>
 nmap <Leader>q :q<CR>
+nmap <Leader>e :e
+
 
 nmap <up> <nop>
 nmap <down> <nop>
@@ -27,7 +30,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <leader>gs :CocSearch
+
 "Escape easily
 imap <silent> jj <esc>
-vmap <silent> ee <esc>
-nmap <silent> ee <esc>
+vmap <silent> qq <esc>
+nmap <silent> qq <esc>
+
+" To automatically close braces when opened
+inoremap { {<CR>}<Esc>==ko
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+
