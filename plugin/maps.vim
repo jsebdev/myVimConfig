@@ -11,6 +11,7 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>W :wa<CR>
 nmap <Leader>q :q<CR>
+nmap <Leader>Q :qa<CR>
 nmap <Leader>e :e
 
 
