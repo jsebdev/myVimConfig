@@ -13,7 +13,7 @@ nmap <Leader>W :wa<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>Q :qa<CR>
 nmap <Leader>e :e
-
+vmap <Leader>y :call YTC()<CR>
 
 nmap <up> <nop>
 nmap <down> <nop>
@@ -38,9 +38,32 @@ imap <silent> jj <esc>
 vmap <silent> qq <esc>
 nmap <silent> qq <esc>
 
-" To automatically close braces when opened
-inoremap { {<CR>}<Esc>==ko
+
+
+"if (&filetype=='html')
+"inoremap } <Esc> :echo "this" &filetype "is an html file"<CR>
+"normal :echo "hola"<CR>
+"else
+"inoremap } <Esc> :echo "this" &filetype "is NOT an html file"<CR>
+"normal :echo "adios"<CR>
+"endif
+
+let my_filetype = fnamemodify(bufname("%"), ":e")
+if (my_filetype == 'html')
+	inoremap { {}<Esc>i
+else
+	inoremap { {<CR>}<Esc>==ko
+endif
+
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap " ""<Esc>i
 inoremap ' ''<Esc>i
+inoremap ` ``<Esc>i
+
+" Edit VIMRC FROM ANYWHERE
+nnoremap <leader>xe :call EditVIMRC()<CR>|          " n_<leader>xe    -> edit VIMRC
+function! EditVIMRC()
+	execute ':silent tabedit $MYVIMRC'
+	echom ".vimrc"
+endfunction

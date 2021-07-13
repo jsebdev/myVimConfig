@@ -1,5 +1,5 @@
 set number
-set mouse=a "To us the mouse
+set mouse=a | "To us the mouse
 set numberwidth=2
 set clipboard=unnamed
 syntax enable
@@ -39,6 +39,7 @@ set statusline+=\[%{&fileformat}\]
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 set statusline+=\
+
 " Plugins installed with plug *************************
 call plug#begin('~/.vim/plugged')
 
@@ -66,10 +67,7 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 " Plugins installed with plug *************************
 
-
 " Color scheme
-" colorscheme wombat256mod
-" colorscheme afterglow
 colorscheme molokai_dark
 
 " Make NerdTree quit when a file is opened
@@ -94,3 +92,5 @@ let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 " Emmet shortcuts
 let g:user_emmet_mode='n'
 let g:user_emmet_leader_key=','
+
+
