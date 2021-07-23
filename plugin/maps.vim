@@ -39,22 +39,16 @@ vmap <silent> qq <esc>
 nmap <silent> qq <esc>
 
 
-
-"if (&filetype=='html')
-"inoremap } <Esc> :echo "this" &filetype "is an html file"<CR>
-"normal :echo "hola"<CR>
+"Function to remap { and let make a new line on not html files
+"function OpenCurlyBraces()
+"if &filetype == 'html'
+"execute "normal! a{}\<esc>ir"
 "else
-"inoremap } <Esc> :echo "this" &filetype "is NOT an html file"<CR>
-"normal :echo "adios"<CR>
+"execute "normal! a{}\<esc>i\<CR>\<esc>==O\<esc>ccr"
 "endif
-
-let my_filetype = fnamemodify(bufname("%"), ":e")
-if (my_filetype == 'html')
-	inoremap { {}<Esc>i
-else
-	inoremap { {<CR>}<Esc>==ko
-endif
-
+"endfunction
+"inoremap { <Esc>:call OpenCurlyBraces()<CR>i<del>
+inoremap { {}<Esc>i
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap " ""<Esc>i

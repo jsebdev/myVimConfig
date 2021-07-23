@@ -15,6 +15,7 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set autochdir
+set noautoindent
 
 
 "Status line Config
@@ -44,8 +45,8 @@ set statusline+=\
 call plug#begin('~/.vim/plugged')
 
 " Themes
-" Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+"Plug 'flazz/vim-colorschemes'
 
 " IDE
 Plug 'easymotion/vim-easymotion'
@@ -56,7 +57,7 @@ Plug 'chiel92/vim-autoformat'
 Plug 'roxma/vim-paste-easy'
 Plug 'scrooloose/nerdcommenter'
 " Colavorative vim in real time (does not work because python)
-Plug 'FredKSchott/CoVim'
+"Plug 'FredKSchott/CoVim'
 "
 " HTML and CSS helper
 Plug 'mattn/emmet-vim'
@@ -68,7 +69,12 @@ call plug#end()
 " Plugins installed with plug *************************
 
 " Color scheme
-colorscheme molokai_dark
+"colorscheme molokai_dark
+"GruvBox configuration
+set termguicolors
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_hls_cursor = 'purple'
+colorscheme gruvbox
 
 " Make NerdTree quit when a file is opened
 let NERDTreeQuitOnOpen=1
