@@ -65,6 +65,7 @@ Plug 'mattn/emmet-vim'
 " variables
 " Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
+Plug 'dense-analysis/ale'
 call plug#end()
 " Plugins installed with plug *************************
 
@@ -92,11 +93,37 @@ endfunction
 let g:python3_host_prog="/usr/bin/python3.6"
 "let g:python_host_prog="/usr/bin/python2.7"
 noremap <F3> :Autoformat<CR>
-au BufWrite * :Autoformat
+au BufWrite *.py,*.c,*.js :Autoformat
 let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
+"let g:formatdef_semistandard_js = '"semistandard --fix --stdin"'
+"let g:formatters_javascript = ['semistandard_js']
 
 " Emmet shortcuts
 let g:user_emmet_mode='n'
-let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key='<space>'
+
+"coc always using node v14.17.4
+let g:coc_node_path='/home/sebastian/.nvm/versions/node/v14.17.4/bin/node'
+
+"Ale configuration
+let g:ale_javascript_standard_executable = '/usr/bin/semistandard'
+let g:ale_javascript_standard_use_global = 1
+let g:ale_fixers = {'javascript': ['standard']}
+let g:ale_fix_on_save = 1
+
+function FilesJS()
+	set tabstop=2
+	set shiftwidth=2
+	set expandtab
+endfunction
+
+if has('autocmd')
+	augroup jsfiles
+		" autocmd FileReadPost *.js echo 'expand("%:p:h")'
+		" autocmd BufRead *.js echo 'expand("%:p:h")'
+		autocmd!
+		au BufRead *.js call FilesJS()
+	augroup END
+endif
 
 
