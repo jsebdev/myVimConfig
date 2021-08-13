@@ -54,7 +54,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'chiel92/vim-autoformat'
-Plug 'roxma/vim-paste-easy'
+"Plug 'roxma/vim-paste-easy'
 Plug 'scrooloose/nerdcommenter'
 " Colavorative vim in real time (does not work because python)
 "Plug 'FredKSchott/CoVim'
@@ -66,6 +66,7 @@ Plug 'mattn/emmet-vim'
 " Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 Plug 'dense-analysis/ale'
+Plug 'Athesto/betty-ale-vim'|       "Program
 call plug#end()
 " Plugins installed with plug *************************
 
@@ -93,7 +94,7 @@ endfunction
 let g:python3_host_prog="/usr/bin/python3.6"
 "let g:python_host_prog="/usr/bin/python2.7"
 noremap <F3> :Autoformat<CR>
-au BufWrite *.py,*.c,*.js :Autoformat
+au BufWrite *.py,*.c,*.js,*html :Autoformat
 let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 "let g:formatdef_semistandard_js = '"semistandard --fix --stdin"'
 "let g:formatters_javascript = ['semistandard_js']
@@ -110,6 +111,7 @@ let g:ale_javascript_standard_executable = '/usr/bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
 let g:ale_fixers = {'javascript': ['standard']}
 let g:ale_fix_on_save = 1
+let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc']}
 
 function FilesJS()
 	set tabstop=2

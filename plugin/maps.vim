@@ -34,7 +34,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>gs :CocSearch
 
 "Escape easily
-imap <silent> jj <esc>
+imap <silent> kj <esc>
 vmap <silent> qq <esc>
 nmap <silent> qq <esc>
 
