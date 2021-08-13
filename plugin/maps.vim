@@ -4,7 +4,6 @@ let mapleader=" "
 nmap <Leader>t :tabnew
 nmap <Leader>l :tabnext<CR>
 nmap <Leader>h :tabprevious<CR>
-"nmap <Leader>q :tabclose<CR>
 
 nmap <Leader>s <Plug>(easymotion-s2)
 nmap <Leader>nt :NERDTreeFind<CR>
@@ -19,7 +18,6 @@ nmap <up> <nop>
 nmap <down> <nop>
 nmap <left> <nop>
 nmap <right> <nop>
-
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -36,8 +34,10 @@ nmap <leader>gs :CocSearch
 "Escape easily
 imap <silent> kj <esc>
 vmap <silent> qq <esc>
-nmap <silent> qq <esc>
 
+"convert words into upper case
+imap <c-u> <esc>viwUea
+nmap <c-u> viwUe
 
 "Function to remap { and let make a new line on not html files
 "function OpenCurlyBraces()
