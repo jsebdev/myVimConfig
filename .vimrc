@@ -130,16 +130,35 @@ if has('autocmd')
 endif
 
 
+"#################### AUTOCMDs #########################
+
+au FileType c :inoreabbrev <buffer> ret return ()<left>
+
+augroup filetype_html
+	autocmd!
+	au BufNewFile,BufRead *.html setlocal nowrap
+	au FileType html nnoremap <buffer> <localleader>f Vatzf
+	au FileType html nnoremap <buffer> 
+augroup END
 
 "#################### MAPS / maps #########################
 let mapleader=" "
+let maplocalleader=","
+
+"Movement mappings
+onoremap p i(
+onoremap s is
+
+"folds shortcuts
+vnoremap <leader>f zf
+nnoremap <leader>a zA
 
 " Tabs keys
 nnoremap <Leader>t :tabnew
 nnoremap <Leader>l :tabnext<CR>
 nnoremap <Leader>h :tabprevious<CR>
 
-nnoremap <Leader>s <Plug>(easymotion-s2)
+nnoremap <leader>s <Plug>(easymotion-s2)
 nnoremap <Leader>nt :NERDTreeFind<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :wa<CR>
@@ -167,30 +186,26 @@ nnoremap <leader>gs :CocSearch
 
 "Escape easily
 inoremap <silent> kj <esc>
+inoremap <esc> <nop>
 vnoremap <silent> qq <esc>
 
 "convert words into upper case
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
 
-"Function to remap { and let make a new line on not html files
-"function OpenCurlyBraces()
-"if &filetype == 'html'
-"execute "normal! a{}\<esc>ir"
-"else
-"execute "normal! a{}\<esc>i\<CR>\<esc>==O\<esc>ccr"
-"endif
-"endfunction
-"inoremap { <Esc>:call OpenCurlyBraces()<CR>i<del>
-inoremap { {}<Esc>i
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<esc>i
-inoremap ` ``<Esc>i
+inoremap { {}<left>ups
+"inoremap ( ()<left>
+inoremap [ []<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+nnoremap H _
+vnoremap H _
+nnoremap L $
+vnoremap L $
 
 " Edit VIMRC FROM ANYWHERE
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>xv :vsplit $MYVIMRC<cr>
 nnoremap <leader>xe :call EditVIMRC()<CR>|          " n_<leader>xe    -> edit VIMRC
 function! EditVIMRC()
 	execute ':silent tabedit $MYVIMRC'
@@ -198,5 +213,5 @@ function! EditVIMRC()
 endfunction
 
 " source vimrc
-:nnoremap <leader>sv :source $MYVIMRC<cr>
+":nnoremap <leader>sv :source $MYVIMRC<cr>
 
