@@ -93,7 +93,7 @@ endfunction
 " To use autoformater for neovim in python
 let g:python3_host_prog="/usr/bin/python3.6"
 "let g:python_host_prog="/usr/bin/python2.7"
-noremap <F3> :Autoformat<CR>
+"noremap <F3> :Autoformat<CR>
 "au BufWrite *.py,*.c,*.js,*html :Autoformat
 let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 "let g:formatdef_semistandard_js = '"semistandard --fix --stdin"'
@@ -109,10 +109,10 @@ let g:coc_node_path='/home/sebastian/.nvm/versions/node/v14.17.4/bin/node'
 "Ale configuration
 let g:ale_javascript_standard_executable = '/usr/bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
-let g:ale_fixers = {'javascript': ['standard']}
+let g:ale_fixers = {'javascript': ['standard'], 'python': ['autopep8']}
 "let g:ale_fix_on_save = 1
-nnoremap <Leader>f :ALEFix<CR>
-let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc']}
+nnoremap <f3> :ALEFix<CR>
+let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc'], 'python':['pycodestyle']}
 
 function FilesJS()
 	set tabstop=2
@@ -132,7 +132,7 @@ endif
 
 "#################### AUTOCMDs #########################
 
-au FileType c :inoreabbrev <buffer> ret return ()<left>
+au FileType c :inoreabbrev <buffer> ret return() <left>
 
 augroup filetype_html
 	autocmd!
@@ -148,6 +148,8 @@ let maplocalleader=","
 "Movement mappings
 onoremap p i(
 onoremap s is
+"onoremap J _
+"onoremap L $
 
 "folds shortcuts
 vnoremap <leader>f zf
@@ -184,6 +186,7 @@ nnoremap <silent> gr <Plug>(coc-references)
 
 nnoremap <leader>gs :CocSearch
 
+
 "Escape easily
 inoremap <silent> kj <esc>
 inoremap <esc> <nop>
@@ -193,8 +196,8 @@ vnoremap <silent> qq <esc>
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
 
-inoremap { {}<left>ups
-"inoremap ( ()<left>
+inoremap { {}<left>
+inoremap ( ()<left>
 inoremap [ []<left>
 inoremap " ""<left>
 inoremap ' ''<left>
@@ -213,5 +216,5 @@ function! EditVIMRC()
 endfunction
 
 " source vimrc
-":nnoremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>xs :source $MYVIMRC<cr>
 
