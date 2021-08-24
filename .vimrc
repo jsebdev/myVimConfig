@@ -18,6 +18,7 @@ set autoindent
 set autochdir
 set noautoindent
 set foldnestmax=3
+set foldlevelstart=99
 "}}}
 
 "Status line Config {{{
@@ -99,25 +100,25 @@ let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc'], 'python':['pycodesty
 "autocmds {{{
 augroup cFiles
 	autocmd!
-	au FileType c :inoreabbrev <buffer> ret return() <left>
-	au FileType c setlocal foldmethod=syntax
+	autocmd FileType c :inoreabbrev <buffer> ret return() <left>
+	autocmd FileType c setlocal foldmethod=syntax
 augroup END
 
 augroup pythonFiles
 	autocmd!
-	au FileType python setlocal foldmethod=indent
+	autocmd FileType python setlocal foldmethod=indent
 augroup END
 
 augroup jsFiles
 	autocmd!
-	au BufRead *.js call FilesJS()
+	autocmd BufRead *.js call FilesJS()
 augroup END
 
 augroup htmlFiles
 	autocmd!
-	au BufNewFile,BufRead *.html setlocal nowrap
-	au FileType html nnoremap <buffer> <localleader>f Vatzf
-	au FileType html nnoremap <buffer> 
+	autocmd BufNewFile,BufRead *.html setlocal nowrap
+	autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+	autocmd FileType html nnoremap <buffer> 
 augroup END
 
 augroup vimFiles
@@ -127,7 +128,7 @@ augroup END
 
 augroup allFiles
 	autocmd!
-	"au FileType * :normal! zR
+	"autocmd FileType * :normal! zR
 augroup END
 "}}}
 
@@ -231,7 +232,7 @@ set list listchars=tab:\→\ ,trail:·,extends:§,precedes:§,nbsp:§
 let g:python3_host_prog="/usr/bin/python3.6"
 "let g:python_host_prog="/usr/bin/python2.7"
 "noremap <F3> :Autoformat<CR>
-"au BufWrite *.py,*.c,*.js,*html :Autoformat
+"autocmd BufWrite *.py,*.c,*.js,*html :Autoformat
 let g:formatterpath = ['/home/sebastian/.local/bin/autopep8']
 "let g:formatdef_semistandard_js = '"semistandard --fix --stdin"'
 "let g:formatters_javascript = ['semistandard_js']
