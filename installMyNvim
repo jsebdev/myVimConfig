@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+#Check if silent mode
+if [ "$1" == "-s" ]
+then
+	O="1>/dev/null 2>/dev/null"
+else
+	O=""
+	echo "No silent mode"
+fi
+
+#Check if sudo is isntalled
+if [ "$(which sudo | wc -c)" == 0 ]
+then
+	SU=""
+else
+	SU="sudo"
+fi
+
+#Check if nvim is not istalled
+if [ "$(which nvim | wc -c )" == "0" ]
+then
+	#check if curl is not installed
+	if [ "$(which curl | wc -c )" == "0" ]
+	then
+		$SU apt update && apt install curl -y
+	fi
+	$SU curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage $O
+	$SU chmod +x nvim.appimage
+	$SU ./nvim.appimage --appimage-extract $O
+	$SU mkdir -p ~/bin
+	$SU mv squashfs-root /
+	$SU ln -s /squashfs-root/AppRun ~/bin/nvim
+
+	#Check if ~/bin is in PATH variable
+	if [[ ! ":$PATH:" =~ .*"$HOME/bin".* ]]
+	then
+		export PATH="$HOME/bin:$PATH"
+	fi
+fi

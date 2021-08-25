@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "$PATH"
+
+if [[ ! ":$PATH:" =~ .*"$HOME/bin".* ]]
+then
+	echo "it's not there"
+	export PATH="$HOME/bin:$PATH"
+	echo "not its there"
+else
+	echo "it's there"
+fi
+
