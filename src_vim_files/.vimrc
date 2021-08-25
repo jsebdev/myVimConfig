@@ -21,32 +21,14 @@ set foldnestmax=3
 set foldlevelstart=99
 "}}}
 
-"Status line Config {{{
-function! GitBranch()
-	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-	let l:branchname = GitBranch()
-	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-set statusline=%#PmenuSel# 
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=\ #buf=\ %n
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\
-"}}}
-
 "Plugins installed with plug  {{{
+"Make sure Plug is isntalled
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " Themes
@@ -74,6 +56,31 @@ Plug 'dense-analysis/ale'
 Plug 'Athesto/betty-ale-vim'|       "Program
 call plug#end()
 " Plugins installed with plug *************************}}}
+
+"Status line Config {{{
+function! GitBranch()
+	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+	let l:branchname = GitBranch()
+	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+set statusline=%#PmenuSel# 
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=\ #buf=\ %n
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\
+"}}}
 
 " functions {{{
 function YTC()
@@ -242,7 +249,7 @@ let g:user_emmet_mode='n'
 let g:user_emmet_leader_key='<space>'
 
 "coc always using node v14.17.4
-let g:coc_node_path='/home/sebastian/.nvm/versions/node/v14.17.4/bin/node'
+"let g:coc_node_path='/home/sebastian/.nvm/versions/node/v14.17.4/bin/node'
 "}}}
 
 " COC settings  {{{

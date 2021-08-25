@@ -1,13 +1,34 @@
 # MyVimConfig
 
-This is my personal vim configuration
+This is my personal vim configuration, I hope you like it if you try it.
 
-Each folder has a readme stating where the respective files in the folder
-should be located or symolic linked to.
+## Programs to install if necessary
 
-.vimrc in this main folder should be located on the HOME directory
+When you run the installer it will check whether or not you have the following programs installed, if you don't have them in you machine it will install them with no promts except for node-js, in case it needs to be installed, it it will prompt for confirmation. 
 
-## Advices (kinda for me)
+- neovim
 
-To use coc-settings.json for c/c++ develpment install ccls
+- git
+
+- curl
+
+- node-js
+
+  
+
+## How to use
+
+Run
+
+```
+. installMyVim
+```
+
+This will make sure your $HOME/bin is contained in $PATH which is necessary if neovim is to be installed using this repository
+
+For not allowing the repository to edit your environment variables run
+
+```
+./installMyVim 
+```
 
