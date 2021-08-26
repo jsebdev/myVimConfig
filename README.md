@@ -21,7 +21,7 @@ When you run the installer it will check whether or not you have the following p
 Run
 
 ```
-. installMyVim
+. installMyNvim
 ```
 
 This will make sure your $HOME/bin is contained in $PATH which is necessary if neovim is to be installed using this repository
@@ -29,6 +29,6 @@ This will make sure your $HOME/bin is contained in $PATH which is necessary if n
 For not allowing the repository to edit your environment variables run
 
 ```
-./installMyVim 
+./installMyNvim 
 ```
 
