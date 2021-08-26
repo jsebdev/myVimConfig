@@ -45,7 +45,10 @@ fi
 #Check if node.js is not isntalled or its version is less than 12.12
 if [ "$(which node | wc -c)" == 0 ] || [ "$(node --version | sed 's/v\([[:digit:]]*\)\.\([[:digit:]]*\).*/\1\2/')" -lt 1212 ]
 then
-	curl -sL install-node.now.sh | bash 
+	curl -sL install-node.now.sh > installnode
+	sed '/confirm "Install/d' installnode > installnode2
+	bash < installnode2
+	rm installnode2 installnode
 fi
 
 #Check if git is installed
