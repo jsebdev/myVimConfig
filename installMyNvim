@@ -33,13 +33,13 @@ then
 	$SU ./nvim.appimage --appimage-extract $O
 	$SU mkdir -p ~/bin
 	$SU mv squashfs-root /
-	$SU ln -s /squashfs-root/AppRun ~/bin/nvim
+	$SU ln -s /squashfs-root/AppRun /bin/nvim
 
 	#Check if ~/bin is in PATH variable
-	if [[ ! ":$PATH:" =~ .*"$HOME/bin".* ]]
-	then
-		export PATH="$HOME/bin:$PATH"
-	fi
+	#if [[ ! ":$PATH:" =~ .*"$HOME/bin".* ]]
+	#then
+		#export PATH="$HOME/bin:$PATH"
+	#fi
 fi
 
 #Check if node.js is not isntalled or its version is less than 12.12
