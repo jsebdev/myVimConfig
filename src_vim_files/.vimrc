@@ -21,6 +21,86 @@ set foldnestmax=3
 set foldlevelstart=99
 "}}}
 
+"maps  {{{
+let mapleader=" "
+let maplocalleader=","
+
+"Movement mappings
+onoremap p i(
+onoremap s is
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F(vi(<cr>
+
+"folds shortcuts
+vnoremap <leader>f zf
+nnoremap <leader>a zA
+
+" Tabs keys
+nnoremap <Leader>t :tabnew
+nnoremap <Leader>l :tabnext<CR>
+nnoremap <Leader>h :tabprevious<CR>
+
+nnoremap <leader>s <Plug>(easymotion-s2)
+nnoremap <Leader>nt :NERDTreeFind<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :wa<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :qa<CR>
+nnoremap <Leader>e :e
+vmap <Leader>y :call YTC()<CR>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" GoTo code navigation.
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+
+nnoremap <leader>gs :CocSearch
+
+
+"Escape easily
+inoremap <silent> kj <esc>
+inoremap <esc> <nop>
+vnoremap <silent> qq <esc>
+
+"convert words into upper case
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+
+inoremap { {}<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+
+nnoremap H _
+vnoremap H _
+nnoremap L $
+vnoremap L $
+
+" Edit VIMRC FROM ANYWHERE
+nnoremap <leader>xv :vsplit $MYVIMRC<cr>
+nnoremap <leader>xe :call EditVIMRC()<CR>|          " n_<leader>xe    -> edit VIMRC
+function! EditVIMRC()
+	execute ':silent tabedit $MYVIMRC'
+	echom ".vimrc"
+endfunction
+
+" source vimrc
+:nnoremap <leader>xs :source $MYVIMRC<cr>
+
+"}}}
+
 "Plugins installed with plug  {{{
 "Make sure Plug is isntalled
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -98,10 +178,14 @@ endfunction
 " ale settings / linters {{{
 let g:ale_javascript_standard_executable = '/usr/bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
-let g:ale_fixers = {'javascript': ['standard'], 'python': ['autopep8']}
+let g:ale_fixers = {'c':['astyle'], 'javascript': ['standard'], 'python': ['autopep8']}
 "let g:ale_fix_on_save = 1
 nnoremap <f3> :ALEFix<CR>
 let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc'], 'python':['pycodestyle']}
+
+
+g:ale_c_astyle_project_options = '/home/sebastian/.astylerc'
+
 " }}}
 
 "autocmds {{{
@@ -137,85 +221,6 @@ augroup allFiles
 	autocmd!
 	"autocmd FileType * :normal! zR
 augroup END
-"}}}
-
-"maps  {{{
-let mapleader=" "
-let maplocalleader=","
-
-"Movement mappings
-onoremap p i(
-onoremap s is
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F(vi(<cr>
-
-"folds shortcuts
-vnoremap <leader>f zf
-nnoremap <leader>a zA
-
-" Tabs keys
-nnoremap <Leader>t :tabnew
-nnoremap <Leader>l :tabnext<CR>
-nnoremap <Leader>h :tabprevious<CR>
-
-nnoremap <leader>s <Plug>(easymotion-s2)
-nnoremap <Leader>nt :NERDTreeFind<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>W :wa<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>Q :qa<CR>
-nnoremap <Leader>e :e
-vmap <Leader>y :call YTC()<CR>
-
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" GoTo code navigation.
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-
-nnoremap <leader>gs :CocSearch
-
-
-"Escape easily
-inoremap <silent> kj <esc>
-inoremap <esc> <nop>
-vnoremap <silent> qq <esc>
-
-"convert words into upper case
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
-
-inoremap { {}<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ` ``<left>
-nnoremap H _
-vnoremap H _
-nnoremap L $
-vnoremap L $
-
-" Edit VIMRC FROM ANYWHERE
-nnoremap <leader>xv :vsplit $MYVIMRC<cr>
-nnoremap <leader>xe :call EditVIMRC()<CR>|          " n_<leader>xe    -> edit VIMRC
-function! EditVIMRC()
-	execute ':silent tabedit $MYVIMRC'
-	echom ".vimrc"
-endfunction
-
-" source vimrc
-:nnoremap <leader>xs :source $MYVIMRC<cr>
-
 "}}}
 
 " extra plugin settings {{{

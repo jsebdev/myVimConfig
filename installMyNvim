@@ -31,7 +31,6 @@ then
 	$SU curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage $O
 	$SU chmod +x nvim.appimage
 	$SU ./nvim.appimage --appimage-extract $O
-	$SU mkdir -p ~/bin
 	$SU mv squashfs-root /
 	$SU ln -s /squashfs-root/AppRun /bin/nvim
 
@@ -41,6 +40,10 @@ then
 		#export PATH="$HOME/bin:$PATH"
 	#fi
 fi
+
+#Install linters and fixers
+rm -f "$HOME"/.astylerc
+ln -s "$(pwd)/.astylerc" "$HOME/.astylerc"
 
 #Check if node.js is not isntalled or its version is less than 12.12
 if [ "$(which node | wc -c)" == 0 ] || [ "$(node --version | sed 's/v\([[:digit:]]*\)\.\([[:digit:]]*\).*/\1\2/')" -lt 1212 ]
