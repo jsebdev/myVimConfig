@@ -30,6 +30,7 @@ onoremap p i(
 onoremap s is
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F(vi(<cr>
+onoremap H
 
 "folds shortcuts
 vnoremap <leader>f zf
@@ -69,7 +70,7 @@ nnoremap <leader>gs :CocSearch
 
 "Escape easily
 inoremap <silent> kj <esc>
-inoremap <esc> <nop>
+"inoremap <esc> <nop>
 vnoremap <silent> qq <esc>
 
 "convert words into upper case
@@ -105,8 +106,8 @@ endfunction
 "Make sure Plug is isntalled
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -178,14 +179,13 @@ endfunction
 " ale settings / linters {{{
 let g:ale_javascript_standard_executable = '/usr/bin/semistandard'
 let g:ale_javascript_standard_use_global = 1
-let g:ale_fixers = {'c':['astyle'], 'javascript': ['standard'], 'python': ['autopep8']}
+let g:ale_fixers = {'c':['uncrustify'], 'javascript': ['standard'], 'python': ['autopep8'], 'html':['prettier']}
 "let g:ale_fix_on_save = 1
 nnoremap <f3> :ALEFix<CR>
 let g:ale_linters = {'c':['bettystyle', 'bettydoc', 'gcc'], 'python':['pycodestyle']}
 
 
-g:ale_c_astyle_project_options = '/home/sebastian/.astylerc'
-
+"g:ale_c_astyle_project_options = '.astylerc'
 " }}}
 
 "autocmds {{{
@@ -207,14 +207,14 @@ augroup END
 
 augroup htmlFiles
 	autocmd!
-	autocmd BufNewFile,BufRead *.html setlocal nowrap
+	"autocmd BufNewFile,BufRead *.html setlocal nowrap
 	autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 	autocmd FileType html nnoremap <buffer> 
 augroup END
 
 augroup vimFiles
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 augroup allFiles
@@ -230,6 +230,7 @@ augroup END
 set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_hls_cursor = 'purple'
+set bg=dark
 colorscheme gruvbox
 
 " Make NerdTree quit when a file is opened

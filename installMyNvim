@@ -42,8 +42,8 @@ then
 fi
 
 #Install linters and fixers
-rm -f "$HOME"/.astylerc
-ln -s "$(pwd)/.astylerc" "$HOME/.astylerc"
+rm -f "$HOME"/.uncrustify.cfg
+ln -s "$(pwd)/other_config_files/.uncrustify.cfg" "$HOME/.uncrustify.cfg"
 
 #Check if node.js is not isntalled or its version is less than 12.12
 if [ "$(which node | wc -c)" == 0 ] || [ "$(node --version | sed 's/v\([[:digit:]]*\)\.\([[:digit:]]*\).*/\1\2/')" -lt 1212 ]
