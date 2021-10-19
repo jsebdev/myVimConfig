@@ -19,6 +19,8 @@ set autochdir
 set noautoindent
 set foldnestmax=3
 set foldlevelstart=99
+set listchars=tab:\|\ 
+set list
 "}}}
 
 "maps  {{{
@@ -100,6 +102,9 @@ endfunction
 " source vimrc
 :nnoremap <leader>xs :source $MYVIMRC<cr>
 
+"FZF finde mappings
+:nnoremap <C-p> :Files<cr>
+:nnoremap <C-A-P> :Files!<cr>
 "}}}
 
 "Plugins installed with plug  {{{
@@ -135,6 +140,15 @@ Plug 'mattn/emmet-vim'
 
 Plug 'dense-analysis/ale'
 Plug 'Athesto/betty-ale-vim'|       "Program
+
+Plug 'leafOfTree/vim-vue-plugin'
+
+"fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+"OmniSharp-vim is a plugin for Vim to provide IDE like abilities for C#.
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 " Plugins installed with plug *************************}}}
 
@@ -210,7 +224,17 @@ augroup htmlFiles
 	"autocmd BufNewFile,BufRead *.html setlocal nowrap
 	autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 	autocmd FileType html nnoremap <buffer> 
+  autocmd FileType html set expandtab
+  autocmd FileType html set shiftwidth=2
 augroup END
+
+augroup jsonFiles
+	autocmd!
+	autocmd FileType json set expandtab
+    autocmd FileType json set shiftwidth=2
+augroup END
+
+
 
 augroup vimFiles
 	autocmd!
@@ -224,6 +248,14 @@ augroup END
 "}}}
 
 " extra plugin settings {{{
+
+"FZF settings
+let g:fzf_preview_window = ['right:40%', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+"Enable plugin for vue files
+let g:vim_vue_plugin_load_full_syntax = 1
+
 " Color scheme
 "colorscheme molokai_dark
 "GruvBox configuration
