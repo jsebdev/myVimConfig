@@ -86,10 +86,12 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ` ``<left>
 
-nnoremap H _
-vnoremap H _
-nnoremap L $
-vnoremap L $
+nnoremap <C-l> $
+vnoremap <C-l> $
+nnoremap <C-h> _
+vnoremap <C-h> _
+
+
 
 " Edit VIMRC FROM ANYWHERE
 nnoremap <leader>xv :vsplit $MYVIMRC<cr>
