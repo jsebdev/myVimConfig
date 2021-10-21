@@ -225,14 +225,14 @@ augroup htmlFiles
 	"autocmd BufNewFile,BufRead *.html setlocal nowrap
 	autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 	autocmd FileType html nnoremap <buffer> 
-  autocmd FileType html set expandtab
-  autocmd FileType html set shiftwidth=2
+  autocmd FileType html setlocal expandtab
+  autocmd FileType html setlocal shiftwidth=2
 augroup END
 
 augroup jsonFiles
 	autocmd!
-	autocmd FileType json set expandtab
-    autocmd FileType json set shiftwidth=2
+	autocmd FileType json setlocal expandtab
+    autocmd FileType json setlocal shiftwidth=2
 augroup END
 
 
@@ -246,7 +246,7 @@ augroup omnisharp_commands
   autocmd!
 
   "Does not really fix the problem, only the html part
-  autocmd BufNewFile,BufRead *.cshtml set syntax=html
+  autocmd BufNewFile,BufRead *.cshtml setlocal syntax=html
   "autocmd FileType razor setfiletype html 
 
   " Show type information automatically when the cursor stops moving.
@@ -255,10 +255,10 @@ augroup omnisharp_commands
   autocmd CursorHold *.cs OmniSharpTypeLookup
 
   " Folding option
-  au FileType cs set omnifunc=syntaxcomplete#Complete
-  au FileType cs set foldmethod=marker
-  au FileType cs set foldmarker={,}
-  au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+  au FileType cs setlocal omnifunc=syntaxcomplete#Complete
+  au FileType cs setlocal foldmethod=marker
+  au FileType cs setlocal foldmarker={,}
+  au FileType cs setlocal foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
 
   " The following commands are contextual, based on the cursor position.
   autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
